@@ -1,0 +1,40 @@
+﻿
+
+// returns List<Docent> with same CampusNr.
+use Opleidingen
+go
+
+create proc spGetDocentByCampus
+	@CampusNr int
+as
+Begin
+	select * from Docenten
+	where CampusNr = @CampusNr
+end
+
+// ADD Docent
+use Opleidingen
+go
+
+create proc spAddDocent
+	@Voornaam nvarchar(50),
+	@Familienaam nvarchar(50),
+	@Wedde money,
+	@CampusNr int
+as
+begin
+	insert into Docenten (Voornaam ,Familienaam,Wedde,CampusNr)
+	values (@Voornaam,@Familienaam,@Wedde,@CampusNr)
+end
+
+//Deleted Docent
+use Opleidingen
+go
+
+create proc spDelDocent
+	@Id int
+as
+begin
+	delete from Docenten where
+	DocentNr = @Id
+end
